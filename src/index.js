@@ -19,8 +19,8 @@ import {
   gptCommand,
 } from "./commands/index.js";
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const hostname = '0.0.0.0';
+const port = 10000;
 
 const chatgpt = new ChatGPTClient(
   "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"
