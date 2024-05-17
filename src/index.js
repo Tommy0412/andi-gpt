@@ -1,4 +1,5 @@
 import "dotenv/config";
+import { createServer } from 'http';
 import { Client, IntentsBitField, codeBlock } from "discord.js";
 import { ChatGPTClient } from "discordjs-chatgpt";
 import { songs } from "./assets/songs.js";
@@ -18,6 +19,9 @@ import {
   gptCommand,
 } from "./commands/index.js";
 
+const hostname = '127.0.0.1';
+const port = 3000;
+
 const chatgpt = new ChatGPTClient(
   "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"
 );
@@ -33,7 +37,7 @@ const client = new Client({
 });
 
 client.on("ready", (x) => {
-  console.log("ready");
+  console.log("DELA!");
   client.application.commands.create(donacijaCommand);
   client.application.commands.create(pesmaCommand);
   client.application.commands.create(slikaCommand);
@@ -146,3 +150,12 @@ client.on("messageCreate", (message) => {
 });
 
 client.login(process.env.DISCORD_TOKEN);
+
+const server = createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Pozdrav svima judiiii');
+});
+server.listen(port, hostname, () => {
+  console.log(`dela judiii pogleč: http://${hostname}:${port}/`);
+});
